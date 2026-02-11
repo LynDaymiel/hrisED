@@ -18,7 +18,9 @@
 				hrisED
 			</h2>
 
-			<div class="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:gap-8">
+			<div
+				class="cursor-pointer grid grid-cols-1 gap-4 lg:grid-cols-4 lg:gap-8"
+			>
 				<div
 					class="h-100 rounded bg-emerald-100 hover:bg-emerald-200 flex flex-col items-center justify-center"
 				>
