@@ -1,8 +1,20 @@
 ﻿<script setup>
-import { ref, onMounted, onUnmounted, defineProps } from "vue";
+import { ref, onMounted, onUnmounted, computed } from "vue";
+import { Icon } from "@iconify/vue";
 
 const usernameInput = ref(null);
 const passwordInput = ref(null);
+const isPasswordvisible = ref(false);
+
+function potato(event) {
+  isPasswordvisible.value = !isPasswordvisible.value;
+
+  passwordInput.value.type = isPasswordvisible.value ? "text" : "password";
+}
+
+const iconName = computed(() => {
+  return isPasswordvisible.value ? "mdi:eye-outline" : "mdi:eye-off";
+});
 
 defineProps({
   imageSrc: String,
@@ -94,7 +106,14 @@ onUnmounted(() => {
             </div>
           </div>
 
-          <div class="mt-2">
+          <div class="relative">
+            <Icon
+              :icon="iconName"
+              width="24"
+              height="24"
+              class="absolute top-[50%] right-3 translate-y-[-50%] pointer-events-auto text-gray-500"
+              @click="potato()"
+            />
             <input
               ref="passwordInput"
               type="password"
@@ -102,7 +121,7 @@ onUnmounted(() => {
               id="password"
               autocomplete="current-password"
               required
-              class="block w-full h-11 rounded-lg bg-white px-3 text-base text-gray-900 border border-gray-300 placeholder:text-gray-400 focus:outline-none focus:border-[#5B3CC4] focus:ring-4 focus:ring-[#5B3CC4]/20"
+              class="block w-full h-11 rounded-lg bg-white px-3 pr-10 text-base text-gray-900 border border-gray-300 placeholder:text-gray-400 focus:outline-none focus:border-[#5B3CC4] focus:ring-4 focus:ring-[#5B3CC4]/20"
             />
           </div>
         </div>
