@@ -1,6 +1,49 @@
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from "vue";
 import { Icon } from "@iconify/vue";
+import axios from "axios";
+import { useRouter } from "vue-router";
+const router = useRouter();
+
+const email = ref("");
+const password = ref("");
+const errorMessage = ref("");
+const isLoading = ref(false);
+
+const handleLogin = async () => {
+  // 1. Reset error and start loading
+  errorMessage.value = "";
+  isLoading.value = true;
+
+  try {
+    // 2. Send data to your backend
+    const response = await axios.post("http://localhost:5000/api/login", {
+      email: email.value,
+      password: password.value,
+    });
+
+    // 3. Success! Store user ID or token (Basic example)
+    console.log("Login Success:", response.data);
+    localStorage.setItem("userId", response.data.userId);
+
+    // 4. Redirect to your main page (Change '/dashboard' to your actual route)
+    router.push("/dashboard");
+  } catch (error) {
+    // 5. Handle Errors
+    if (error.response) {
+      // Server responded with a status code (like 401)
+      errorMessage.value = error.response.data.error;
+    } else if (error.request) {
+      // Request was made but no response (Server likely down)
+      errorMessage.value = "Cannot connect to server. Is it running?";
+    } else {
+      errorMessage.value = "An unexpected error occurred.";
+    }
+    console.error(error);
+  } finally {
+    isLoading.value = false;
+  }
+};
 
 const usernameInput = ref(null);
 const passwordInput = ref(null);
@@ -66,13 +109,14 @@ onUnmounted(() => {
     </div>
 
     <div class="mt-8 sm:mx-auto sm:w-full">
-      <form class="space-y-6" action="#" method="POST">
+      <form class="space-y-6" @submit.prevent="handleLogin" method="POST">
         <div>
           <label for="email" class="block text-sm font-medium text-gray-700">
             Email address
           </label>
           <div class="mt-2">
             <input
+              v-model="email"
               ref="usernameInput"
               type="email"
               name="email"
@@ -112,6 +156,7 @@ onUnmounted(() => {
               @click="potato()"
             />
             <input
+              v-model="password"
               ref="passwordInput"
               type="password"
               name="password"
@@ -140,6 +185,11 @@ onUnmounted(() => {
             class="flex w-full justify-center items-center h-11 rounded-lg border border-green-600 text-green-700 font-semibold hover:bg-green-50 focus:outline-none focus:ring-4 focus:ring-green-200"
           >
             Register
+          </button>
+          <p v-if="errorMessage" class="error-text">{{ errorMessage }}</p>
+
+          <button type="submit" :disabled="isLoading">
+            {{ isLoading ? "Logging in..." : "Login" }}
           </button>
         </div>
       </form>
