@@ -1,4 +1,10 @@
-<script></script>
+<script setup>
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+const goTo = (path) => router.push(path);
+</script>
 <template>
   <div class="pt-6">
     <section
@@ -58,8 +64,6 @@
               </span>
 
               <select
-                name="Headline"
-                id="Headline"
                 class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               >
                 <option value="">Please select</option>
@@ -149,8 +153,6 @@
               </span>
 
               <select
-                name="Headline"
-                id="Headline"
                 class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               >
                 <option value="">Please select</option>
@@ -230,9 +232,15 @@
 
         <div class="flex justify-end mt-6">
           <button
-            class="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+            class="mr-8 px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-green-700 rounded-md hover:bg-green-600 focus:outline-none focus:bg-gray-600"
           >
             Save
+          </button>
+          <button
+            @click="goTo('/PDS')"
+            class="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+          >
+            Review
           </button>
         </div>
       </form>

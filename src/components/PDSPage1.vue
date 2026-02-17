@@ -16,7 +16,12 @@ const nameStyle = (top) => ({
 </script>
 <template>
   <div class="no-print actions">
-    <button @click="printPage">Print</button>
+    <button
+      @click="printPage"
+      class="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-blue-700 rounded-md hover:bg-bl-600 focus:outline-none focus:bg-gray-600"
+    >
+      Print
+    </button>
   </div>
 
   <div class="page">

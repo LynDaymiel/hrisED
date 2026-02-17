@@ -1,6 +1,60 @@
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from "vue";
 import { Icon } from "@iconify/vue";
+import axios from "axios";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+// 1. Reactive Variables
+const email = ref("");
+const password = ref("");
+const errorMessage = ref("");
+const isLoading = ref(false);
+
+const handleLogin = async () => {
+  // Reset UI state
+  errorMessage.value = "";
+  isLoading.value = true;
+
+  try {
+    // 3. Send Request to your new MySQL Server
+    const response = await axios.post("http://localhost:5000/api/login", {
+      email: email.value,
+      password: password.value,
+    });
+
+    console.log("✅ Login Success:", response.data);
+
+    // 4. Save User Info (This matches your backend response structure)
+    if (response.data.user) {
+      localStorage.setItem("userId", response.data.user.id);
+      localStorage.setItem("userEmail", response.data.user.email);
+
+      // Optional: Store the whole object
+      // localStorage.setItem('user', JSON.stringify(response.data.user));
+    }
+
+    // 5. Redirect to Dashboard (Make sure this route exists!)
+    router.push("/home");
+  } catch (error) {
+    console.error("❌ Login Failed:", error);
+
+    // 6. Handle Errors Gracefully
+    if (error.response) {
+      // Server replied with 401 (Invalid creds) or 500 (Server error)
+      errorMessage.value = error.response.data.error || "Login failed.";
+    } else if (error.request) {
+      // Server is offline or unreachable
+      errorMessage.value =
+        "Cannot connect to server. Is 'node index.js' running?";
+    } else {
+      errorMessage.value = "An unexpected error occurred.";
+    }
+  } finally {
+    isLoading.value = false;
+  }
+};
 
 const usernameInput = ref(null);
 const passwordInput = ref(null);
@@ -66,13 +120,14 @@ onUnmounted(() => {
     </div>
 
     <div class="mt-8 sm:mx-auto sm:w-full">
-      <form class="space-y-6" action="#" method="POST">
+      <form class="space-y-6" @submit.prevent="handleLogin" method="POST">
         <div>
           <label for="email" class="block text-sm font-medium text-gray-700">
             Email address
           </label>
           <div class="mt-2">
             <input
+              v-model="email"
               ref="usernameInput"
               type="email"
               name="email"
@@ -112,6 +167,7 @@ onUnmounted(() => {
               @click="potato()"
             />
             <input
+              v-model="password"
               ref="passwordInput"
               type="password"
               name="password"
@@ -124,12 +180,16 @@ onUnmounted(() => {
         </div>
 
         <!-- Primary -->
+        <div v-if="errorMessage" class="error-alert">
+          {{ errorMessage }}
+        </div>
         <div>
           <button
             type="submit"
             class="flex w-full justify-center items-center h-11 rounded-lg bg-blue-800 text-white font-semibold hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-200"
           >
-            Sign in
+            <span v-if="isLoading">Logging in...</span>
+            <span v-else>Login</span>
           </button>
         </div>
 
@@ -146,3 +206,18 @@ onUnmounted(() => {
     </div>
   </div>
 </template>
+
+<style scoped>
+/* Clean, Modern CSS */
+
+.error-alert {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+</style>

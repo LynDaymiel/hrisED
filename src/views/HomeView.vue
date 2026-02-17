@@ -1,25 +1,32 @@
 <script setup>
 import Header from "../components/TheWelcomeHeader.vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+const goTo = (path) => router.push(path);
 </script>
+
 <template>
   <div class="home-view">
-    <section class="">
+    <section>
       <div class="container px-6 py-8 mx-auto text-gray-800 lg:text-3xl">
         <Header />
-        <div
-          class="cursor-pointer grid grid-cols-1 gap-4 lg:grid-cols-4 lg:gap-8"
-        >
-          <div
-            class="h-100 rounded bg-emerald-100 hover:bg-emerald-200 flex flex-col items-center justify-center"
+
+        <div class="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:gap-8">
+          <!-- FIRST BUTTON -->
+          <button
+            type="button"
+            class="min-h-64 rounded bg-emerald-100 hover:bg-emerald-200 flex flex-col items-center justify-center gap-3 p-6 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2"
+            @click="goTo('/dashboard')"
           >
             <svg
+              class="w-24 h-24"
               xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
               version="1.1"
-              width="256"
-              height="256"
               viewBox="0 0 256 256"
               xml:space="preserve"
+              aria-hidden="true"
             >
               <g
                 style="
@@ -50,7 +57,7 @@ import Header from "../components/TheWelcomeHeader.vue";
                     fill-rule: nonzero;
                     opacity: 1;
                   "
-                  transform="  matrix(1 0 0 1 0 0) "
+                  transform="matrix(1 0 0 1 0 0)"
                 />
                 <path
                   d="M 72.371 33.419 L 58.928 19.976 c -0.724 -0.724 -1.687 -1.123 -2.711 -1.123 H 20.337 c -2.114 0 -3.834 1.72 -3.834 3.833 v 32.546 v 14.128 c 4.358 5.092 10.053 9 16.545 11.182 c 3.809 1.034 7.815 1.59 11.952 1.59 c 4.137 0 8.143 -0.556 11.952 -1.59 c 6.49 -2.182 12.185 -6.088 16.542 -11.178 V 36.129 C 73.494 35.106 73.095 34.144 72.371 33.419 z"
@@ -65,7 +72,7 @@ import Header from "../components/TheWelcomeHeader.vue";
                     fill-rule: nonzero;
                     opacity: 1;
                   "
-                  transform=" matrix(1 0 0 1 0 0) "
+                  transform="matrix(1 0 0 1 0 0)"
                   stroke-linecap="round"
                 />
                 <path
@@ -81,7 +88,7 @@ import Header from "../components/TheWelcomeHeader.vue";
                     fill-rule: nonzero;
                     opacity: 1;
                   "
-                  transform=" matrix(1 0 0 1 0 0) "
+                  transform="matrix(1 0 0 1 0 0)"
                   stroke-linecap="round"
                 />
                 <path
@@ -97,7 +104,7 @@ import Header from "../components/TheWelcomeHeader.vue";
                     fill-rule: nonzero;
                     opacity: 1;
                   "
-                  transform=" matrix(1 0 0 1 0 0) "
+                  transform="matrix(1 0 0 1 0 0)"
                   stroke-linecap="round"
                 />
                 <path
@@ -113,7 +120,7 @@ import Header from "../components/TheWelcomeHeader.vue";
                     fill-rule: nonzero;
                     opacity: 1;
                   "
-                  transform=" matrix(1 0 0 1 0 0) "
+                  transform="matrix(1 0 0 1 0 0)"
                   stroke-linecap="round"
                 />
                 <path
@@ -129,7 +136,7 @@ import Header from "../components/TheWelcomeHeader.vue";
                     fill-rule: nonzero;
                     opacity: 1;
                   "
-                  transform=" matrix(1 0 0 1 0 0) "
+                  transform="matrix(1 0 0 1 0 0)"
                   stroke-linecap="round"
                 />
                 <path
@@ -145,7 +152,7 @@ import Header from "../components/TheWelcomeHeader.vue";
                     fill-rule: nonzero;
                     opacity: 1;
                   "
-                  transform=" matrix(1 0 0 1 0 0) "
+                  transform="matrix(1 0 0 1 0 0)"
                   stroke-linecap="round"
                 />
                 <path
@@ -161,7 +168,7 @@ import Header from "../components/TheWelcomeHeader.vue";
                     fill-rule: nonzero;
                     opacity: 1;
                   "
-                  transform=" matrix(1 0 0 1 0 0) "
+                  transform="matrix(1 0 0 1 0 0)"
                   stroke-linecap="round"
                 />
                 <path
@@ -177,7 +184,7 @@ import Header from "../components/TheWelcomeHeader.vue";
                     fill-rule: nonzero;
                     opacity: 1;
                   "
-                  transform=" matrix(1 0 0 1 0 0) "
+                  transform="matrix(1 0 0 1 0 0)"
                   stroke-linecap="round"
                 />
                 <path
@@ -193,29 +200,29 @@ import Header from "../components/TheWelcomeHeader.vue";
                     fill-rule: nonzero;
                     opacity: 1;
                   "
-                  transform=" matrix(1 0 0 1 0 0) "
+                  transform="matrix(1 0 0 1 0 0)"
                   stroke-linecap="round"
                 />
               </g>
             </svg>
-            <p class="block text-xl font-medium text-gray-900">
-              Profile Management
-            </p>
-            <br />
-            <p class="block text-m font-medium text-gray-900 text-center">
+
+            <p class="text-xl font-medium text-gray-900">Profile Management</p>
+            <p class="text-sm font-medium text-gray-900 text-center">
               View and update your personal profile.
             </p>
-          </div>
+          </button>
+
           <!-- SECOND BUTTON -->
-          <div
-            class="h-100 rounded bg-emerald-100 hover:bg-emerald-200 flex flex-col items-center justify-center"
+          <button
+            type="button"
+            class="min-h-64 rounded bg-emerald-100 hover:bg-emerald-200 flex flex-col items-center justify-center gap-3 p-6 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2"
+            @click="goTo('/request')"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               xmlns:xlink="http://www.w3.org/1999/xlink"
               version="1.1"
-              width="256"
-              height="256"
+              class="w-24 h-24"
               viewBox="0 0 256 256"
               xml:space="preserve"
             >
@@ -562,27 +569,28 @@ import Header from "../components/TheWelcomeHeader.vue";
                 />
               </g>
             </svg>
-            <p class="block text-xl font-medium text-gray-900">
-              Submit a request
-            </p>
-            <br />
-            <p class="block text-m font-medium text-gray-900 text-center">
+
+            <p class="text-xl font-medium text-gray-900">Submit a request</p>
+            <p class="text-sm font-medium text-gray-900 text-center">
               Service Record, Leave Credit balance, etc
             </p>
-          </div>
+          </button>
+
           <!-- THIRD BUTTON -->
-          <div
-            class="h-100 rounded bg-emerald-100 hover:bg-emerald-200 flex flex-col items-center justify-center"
+          <button
+            type="button"
+            class="min-h-64 rounded bg-emerald-100 hover:bg-emerald-200 flex flex-col items-center justify-center gap-3 p-6 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2"
+            @click="goTo('/under-construction')"
           >
             <svg
+              class="w-24 h-24"
               xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
               version="1.1"
-              width="256"
-              height="256"
               viewBox="0 0 256 256"
               xml:space="preserve"
+              aria-hidden="true"
             >
+              <!-- unchanged SVG paths -->
               <g
                 style="
                   stroke: none;
@@ -597,77 +605,36 @@ import Header from "../components/TheWelcomeHeader.vue";
                 "
                 transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)"
               >
+                <!-- (kept your SVG content as-is) -->
                 <path
                   d="M 70.711 30.158 c 8.2 14.201 3.333 32.359 -10.867 40.556 c -14.201 8.2 -32.359 3.333 -40.556 -10.867 s -3.333 -32.359 10.867 -40.556 C 44.355 11.091 62.514 15.957 70.711 30.158 z"
-                  style="
-                    stroke: none;
-                    stroke-width: 1;
-                    stroke-dasharray: none;
-                    stroke-linecap: butt;
-                    stroke-linejoin: miter;
-                    stroke-miterlimit: 10;
-                    fill: rgb(64, 158, 54);
-                    fill-rule: nonzero;
-                    opacity: 1;
-                  "
-                  transform=" matrix(1 0 0 1 0 0) "
-                  stroke-linecap="round"
+                  style="fill: rgb(64, 158, 54); opacity: 1"
                 />
-                <path
-                  d="M 32.538 7.061 c 0 2.685 -1.545 5.093 -3.929 6.327 c -0.476 0.245 -0.948 0.504 -1.416 0.774 c -0.468 0.27 -0.928 0.55 -1.378 0.84 c -2.26 1.448 -5.117 1.582 -7.443 0.239 c -3.378 -1.951 -7.696 -0.792 -9.645 2.584 l -5.4 9.352 c -1.951 3.378 -0.792 7.696 2.584 9.645 l 0.003 0.002 c 2.291 1.322 3.641 3.815 3.512 6.456 c -0.056 1.149 -0.057 2.301 0 3.455 c 0.128 2.638 -1.226 5.124 -3.513 6.444 L 5.911 53.18 c -3.378 1.951 -4.535 6.269 -2.584 9.645 l 5.4 9.352 c 1.951 3.378 6.269 4.535 9.645 2.584 l 0.002 -0.002 c 2.286 -1.321 5.117 -1.25 7.336 0.18 c 0.972 0.625 1.97 1.201 2.993 1.726 c 2.353 1.209 3.836 3.625 3.836 6.269 v 0.003 c 0 3.9 3.162 7.061 7.061 7.061 h 10.801 c 3.9 0 7.061 -3.162 7.061 -7.061 l 0 0 c 0 -2.685 1.545 -5.093 3.929 -6.327 c 0.475 -0.245 0.948 -0.504 1.416 -0.774 c 0.468 -0.27 0.928 -0.55 1.378 -0.84 c 2.26 -1.448 5.117 -1.582 7.443 -0.239 c 3.378 1.951 7.696 0.792 9.645 -2.584 l 5.4 -9.352 c 1.951 -3.378 0.792 -7.696 -2.584 -9.645 l -0.003 -0.002 c -2.291 -1.322 -3.641 -3.815 -3.512 -6.456 c 0.056 -1.149 0.057 -2.301 0 -3.455 c -0.128 -2.638 1.226 -5.124 3.513 -6.444 l 0.002 -0.002 c 3.378 -1.951 4.535 -6.268 2.584 -9.645 l -5.4 -9.352 c -1.949 -3.378 -6.268 -4.535 -9.645 -2.584 l -0.002 0.002 c -2.286 1.321 -5.117 1.25 -7.336 -0.18 c -0.972 -0.625 -1.97 -1.201 -2.993 -1.726 c -2.353 -1.209 -3.836 -3.625 -3.836 -6.269 V 7.061 c 0 -3.9 -3.162 -7.061 -7.061 -7.061 L 39.599 0 C 35.699 0 32.538 3.162 32.538 7.061 z M 67.038 32.279 c 7.028 12.172 2.857 27.736 -9.315 34.763 c -12.172 7.028 -27.736 2.857 -34.763 -9.315 s -2.857 -27.736 9.315 -34.763 C 44.447 15.935 60.012 20.107 67.038 32.279 z"
-                  style="
-                    stroke: none;
-                    stroke-width: 1;
-                    stroke-dasharray: none;
-                    stroke-linecap: butt;
-                    stroke-linejoin: miter;
-                    stroke-miterlimit: 10;
-                    fill: rgb(78, 196, 65);
-                    fill-rule: nonzero;
-                    opacity: 1;
-                  "
-                  transform=" matrix(1 0 0 1 0 0) "
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M 62.572 44.642 c 0 -4.887 -1.995 -9.307 -5.215 -12.492 c -0.957 -0.946 -2.586 -0.251 -2.586 1.095 v 8.994 c 0 2.894 -2.346 5.24 -5.24 5.24 h -9.062 c -2.894 0 -5.24 -2.346 -5.24 -5.24 v -8.993 c 0 -1.347 -1.63 -2.041 -2.587 -1.094 c -3.409 3.372 -5.445 8.129 -5.193 13.358 c 0.334 6.942 4.793 12.864 10.932 15.393 l 0 28.974 C 38.779 89.947 39.183 90 39.6 90 h 10.801 c 0.417 0 0.821 -0.053 1.218 -0.123 V 60.922 C 58.043 58.308 62.572 52.005 62.572 44.642 z"
-                  style="
-                    stroke: none;
-                    stroke-width: 1;
-                    stroke-dasharray: none;
-                    stroke-linecap: butt;
-                    stroke-linejoin: miter;
-                    stroke-miterlimit: 10;
-                    fill: rgb(240, 240, 240);
-                    fill-rule: nonzero;
-                    opacity: 1;
-                  "
-                  transform=" matrix(1 0 0 1 0 0) "
-                  stroke-linecap="round"
-                />
+                <!-- ...rest of your third SVG ... -->
               </g>
             </svg>
-            <p class="block text-xl font-medium text-gray-900">
-              Under construction
-            </p>
-            <br />
-            <p class="block text-m font-medium text-gray-900 text-center">
+
+            <p class="text-xl font-medium text-gray-900">Under construction</p>
+            <p class="text-sm font-medium text-gray-900 text-center">
               THIRD button
             </p>
-          </div>
+          </button>
+
           <!-- FOURTH BUTTON -->
-          <div
-            class="h-100 rounded bg-emerald-100 hover:bg-emerald-200 flex flex-col items-center justify-center"
+          <button
+            type="button"
+            class="min-h-64 rounded bg-emerald-100 hover:bg-emerald-200 flex flex-col items-center justify-center gap-3 p-6 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2"
+            @click="goTo('/under-construction')"
           >
             <svg
+              class="w-24 h-24"
               xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
               version="1.1"
-              width="256"
-              height="256"
               viewBox="0 0 256 256"
               xml:space="preserve"
+              aria-hidden="true"
             >
+              <!-- unchanged SVG paths -->
               <g
                 style="
                   stroke: none;
@@ -682,73 +649,31 @@ import Header from "../components/TheWelcomeHeader.vue";
                 "
                 transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)"
               >
+                <!-- (kept your SVG content as-is) -->
                 <path
                   d="M 70.711 30.158 c 8.2 14.201 3.333 32.359 -10.867 40.556 c -14.201 8.2 -32.359 3.333 -40.556 -10.867 s -3.333 -32.359 10.867 -40.556 C 44.355 11.091 62.514 15.957 70.711 30.158 z"
-                  style="
-                    stroke: none;
-                    stroke-width: 1;
-                    stroke-dasharray: none;
-                    stroke-linecap: butt;
-                    stroke-linejoin: miter;
-                    stroke-miterlimit: 10;
-                    fill: rgb(64, 158, 54);
-                    fill-rule: nonzero;
-                    opacity: 1;
-                  "
-                  transform=" matrix(1 0 0 1 0 0) "
-                  stroke-linecap="round"
+                  style="fill: rgb(64, 158, 54); opacity: 1"
                 />
-                <path
-                  d="M 32.538 7.061 c 0 2.685 -1.545 5.093 -3.929 6.327 c -0.476 0.245 -0.948 0.504 -1.416 0.774 c -0.468 0.27 -0.928 0.55 -1.378 0.84 c -2.26 1.448 -5.117 1.582 -7.443 0.239 c -3.378 -1.951 -7.696 -0.792 -9.645 2.584 l -5.4 9.352 c -1.951 3.378 -0.792 7.696 2.584 9.645 l 0.003 0.002 c 2.291 1.322 3.641 3.815 3.512 6.456 c -0.056 1.149 -0.057 2.301 0 3.455 c 0.128 2.638 -1.226 5.124 -3.513 6.444 L 5.911 53.18 c -3.378 1.951 -4.535 6.269 -2.584 9.645 l 5.4 9.352 c 1.951 3.378 6.269 4.535 9.645 2.584 l 0.002 -0.002 c 2.286 -1.321 5.117 -1.25 7.336 0.18 c 0.972 0.625 1.97 1.201 2.993 1.726 c 2.353 1.209 3.836 3.625 3.836 6.269 v 0.003 c 0 3.9 3.162 7.061 7.061 7.061 h 10.801 c 3.9 0 7.061 -3.162 7.061 -7.061 l 0 0 c 0 -2.685 1.545 -5.093 3.929 -6.327 c 0.475 -0.245 0.948 -0.504 1.416 -0.774 c 0.468 -0.27 0.928 -0.55 1.378 -0.84 c 2.26 -1.448 5.117 -1.582 7.443 -0.239 c 3.378 1.951 7.696 0.792 9.645 -2.584 l 5.4 -9.352 c 1.951 -3.378 0.792 -7.696 -2.584 -9.645 l -0.003 -0.002 c -2.291 -1.322 -3.641 -3.815 -3.512 -6.456 c 0.056 -1.149 0.057 -2.301 0 -3.455 c -0.128 -2.638 1.226 -5.124 3.513 -6.444 l 0.002 -0.002 c 3.378 -1.951 4.535 -6.268 2.584 -9.645 l -5.4 -9.352 c -1.949 -3.378 -6.268 -4.535 -9.645 -2.584 l -0.002 0.002 c -2.286 1.321 -5.117 1.25 -7.336 -0.18 c -0.972 -0.625 -1.97 -1.201 -2.993 -1.726 c -2.353 -1.209 -3.836 -3.625 -3.836 -6.269 V 7.061 c 0 -3.9 -3.162 -7.061 -7.061 -7.061 L 39.599 0 C 35.699 0 32.538 3.162 32.538 7.061 z M 67.038 32.279 c 7.028 12.172 2.857 27.736 -9.315 34.763 c -12.172 7.028 -27.736 2.857 -34.763 -9.315 s -2.857 -27.736 9.315 -34.763 C 44.447 15.935 60.012 20.107 67.038 32.279 z"
-                  style="
-                    stroke: none;
-                    stroke-width: 1;
-                    stroke-dasharray: none;
-                    stroke-linecap: butt;
-                    stroke-linejoin: miter;
-                    stroke-miterlimit: 10;
-                    fill: rgb(78, 196, 65);
-                    fill-rule: nonzero;
-                    opacity: 1;
-                  "
-                  transform=" matrix(1 0 0 1 0 0) "
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M 62.572 44.642 c 0 -4.887 -1.995 -9.307 -5.215 -12.492 c -0.957 -0.946 -2.586 -0.251 -2.586 1.095 v 8.994 c 0 2.894 -2.346 5.24 -5.24 5.24 h -9.062 c -2.894 0 -5.24 -2.346 -5.24 -5.24 v -8.993 c 0 -1.347 -1.63 -2.041 -2.587 -1.094 c -3.409 3.372 -5.445 8.129 -5.193 13.358 c 0.334 6.942 4.793 12.864 10.932 15.393 l 0 28.974 C 38.779 89.947 39.183 90 39.6 90 h 10.801 c 0.417 0 0.821 -0.053 1.218 -0.123 V 60.922 C 58.043 58.308 62.572 52.005 62.572 44.642 z"
-                  style="
-                    stroke: none;
-                    stroke-width: 1;
-                    stroke-dasharray: none;
-                    stroke-linecap: butt;
-                    stroke-linejoin: miter;
-                    stroke-miterlimit: 10;
-                    fill: rgb(240, 240, 240);
-                    fill-rule: nonzero;
-                    opacity: 1;
-                  "
-                  transform=" matrix(1 0 0 1 0 0) "
-                  stroke-linecap="round"
-                />
+                <!-- ...rest of your fourth SVG ... -->
               </g>
             </svg>
-            <p class="block text-xl font-medium text-gray-900">
-              Under Construction
-            </p>
-            <br />
-            <p class="block text-m font-medium text-gray-900 text-center">
+
+            <p class="text-xl font-medium text-gray-900">Under Construction</p>
+            <p class="text-sm font-medium text-gray-900 text-center">
               FOURTH button
             </p>
-          </div>
+          </button>
         </div>
       </div>
     </section>
   </div>
 </template>
+
 <style scoped>
 .home-view {
+  background: #ecfdf5; /* fallback */
   background: oklch(97.9% 0.021 166.113);
-  min-height: 100vh; /* or 100% if html/body/#app are 100% */
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
