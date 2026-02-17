@@ -1,5 +1,9 @@
 <script setup>
 import Header from "../components/TheWelcomeHeader.vue";
+
+function Logout() {
+  alert("im clicked!");
+}
 </script>
 <template>
   <div class="home-view">
@@ -742,9 +746,16 @@ import Header from "../components/TheWelcomeHeader.vue";
           </div>
         </div>
       </div>
+      <button
+        class="inline-flex items-center justify-center rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 active:scale-[0.98] transition"
+        @click="Logout()"
+      >
+        Logout
+      </button>
     </section>
   </div>
 </template>
+
 <style scoped>
 .home-view {
   background: oklch(97.9% 0.021 166.113);

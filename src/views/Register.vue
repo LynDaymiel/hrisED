@@ -1,10 +1,7 @@
 <script setup>
-import Login from "../components/Login.vue";
+import Register from "../components/Register.vue";
 import shrinersLogo from "../assets/logos/shriners.png";
 import hrisLogos from "../assets/logos/hrisED.png";
-import { useRouter } from "vue-router";
-
-const router = useRouter();
 
 const shrinerLogo = shrinersLogo;
 const hrisLogo = hrisLogos;
@@ -12,7 +9,7 @@ const hrisLogo = hrisLogos;
 
 <template>
   <div class="login-root">
-    <Login :imageSrc="shrinerLogo" :imageSrc2="hrisLogo" />
+    <Register :imageSrc="shrinerLogo" :imageSrc2="hrisLogo" />
   </div>
   <!-- <Header />
 	<br />

@@ -8,22 +8,38 @@ const router = useRouter();
 const email = ref("");
 const password = ref("");
 
-const Login = async () => {
-  const res = await fetch("http://localhost:3333/api/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      email: email.value,
-      password: password.value,
-    }),
-  }).then((res) => res.json());
-  if (res.success) {
-    localStorage.setItem("token", res.token);
-    router.push("/");
-  } else {
-    alert(res.message);
+const Register = async () => {
+  try {
+    const response = await fetch("http://localhost:3333/api/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: email.value,
+        password: password.value,
+      }),
+    });
+
+    // If backend returned HTML or error, this prevents the JSON crash
+    const text = await response.text();
+
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch {
+      console.error("Non-JSON response:", text);
+      alert("Server did not return JSON. Check your API URL/port.");
+      return;
+    }
+
+    if (data.success) {
+      localStorage.setItem("token", data.token);
+      router.push("/");
+    } else {
+      alert(data.message);
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Network error. Is your server running on port 3333?");
   }
 };
 
@@ -81,7 +97,7 @@ onUnmounted(() => {});
     </div>
 
     <div class="mt-8 sm:mx-auto sm:w-full">
-      <form class="space-y-6" @submit.prevent="Login" method="POST">
+      <form class="space-y-6" @submit.prevent="Register" method="POST">
         <div>
           <label for="email" class="block text-sm font-medium text-gray-700">
             Email address
@@ -109,15 +125,6 @@ onUnmounted(() => {});
             >
               Password
             </label>
-
-            <div class="text-sm">
-              <a
-                href="ForgetPassword.vue"
-                class="font-semibold text-[#5B3CC4] hover:opacity-90"
-              >
-                Forgot password?
-              </a>
-            </div>
           </div>
 
           <div class="relative">
@@ -142,20 +149,23 @@ onUnmounted(() => {});
           </div>
         </div>
 
-        <!-- Primary -->
         <div>
-          <button
-            type="submit"
-            class="flex w-full justify-center items-center h-11 rounded-lg bg-blue-800 text-white font-semibold hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-200"
-          >
-            Sign in
-          </button>
+          <div class="flex items-center justify-between">
+            <label
+              for="password"
+              class="block text-sm font-medium text-gray-700"
+            >
+              Confirm Password
+            </label>
+          </div>
         </div>
+
+        <!-- Primary -->
 
         <!-- Secondary -->
         <div>
           <button
-            type="button"
+            type="submit"
             class="flex w-full justify-center items-center h-11 rounded-lg border border-green-600 text-green-700 font-semibold hover:bg-green-50 focus:outline-none focus:ring-4 focus:ring-green-200"
           >
             Register
