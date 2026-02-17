@@ -1,4 +1,4 @@
-﻿<script setup>
+<script setup>
 import { ref, onMounted, onUnmounted, computed } from "vue";
 import { Icon } from "@iconify/vue";
 
@@ -8,7 +8,6 @@ const isPasswordvisible = ref(false);
 
 function potato(event) {
   isPasswordvisible.value = !isPasswordvisible.value;
-
   passwordInput.value.type = isPasswordvisible.value ? "text" : "password";
 }
 
@@ -21,12 +20,10 @@ defineProps({
   imageSrc2: String,
 });
 
-// NOTE: globally hijacking Tab is not recommended for accessibility,
-// but keeping your behavior as-is.
 const handleGlobalTab = (event) => {
   if (event.key === "Tab") {
     event.preventDefault();
-    passwordInput.value?.focus();
+    passwordInput.value.focus();
   }
 };
 
