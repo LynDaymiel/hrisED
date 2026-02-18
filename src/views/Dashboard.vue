@@ -1,18 +1,17 @@
 <script setup>
-import Header from "../components/Header.vue";
-import Form from "../components/Form.vue";
+	import Sidebar from "../components/Sidebar.vue";
+	import Form from "../components/Form.vue";
+	import hrisLogos from "../assets/logos/hrisED.png";
+	const hrisLogo = hrisLogos;
 </script>
 
 <template>
-  <Header />
-  <div class="home-view">
-    <Form />
-  </div>
+	<div class="flex min-h-screen bg-gray-50">
+		<Sidebar :imageSrc="hrisLogo" />
+		<main class="flex-1 p-6 overflow-auto">
+			<Form />
+		</main>
+	</div>
 </template>
 
-<style scoped>
-.home-view {
-  background: oklch(98.4% 0.003 247.858);
-  min-height: 100vh; /* or 100% if html/body/#app are 100% */
-}
-</style>
+<style scoped></style>
