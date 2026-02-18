@@ -1,27 +1,27 @@
 <script setup>
-	import Login from "../components/Login.vue";
-	import shrinersLogo from "../assets/logos/shriners.png";
-	import hrisLogos from "../assets/logos/hrisED.png";
+import Login from "../components/Login.vue";
+import shrinersLogo from "../assets/logos/shriners.png";
+import hrisLogos from "../assets/logos/hrisED.png";
 
-	const shrinerLogo = shrinersLogo;
-	const hrisLogo = hrisLogos;
+const shrinerLogo = shrinersLogo;
+const hrisLogo = hrisLogos;
 </script>
 
 <template>
-	<div class="login-root">
-		<Login :imageSrc="shrinerLogo" :imageSrc2="hrisLogo" />
-	</div>
-	<!-- <Header />
+  <div class="login-root">
+    <Login :imageSrc="shrinerLogo" :imageSrc2="hrisLogo" />
+  </div>
+  <!-- <Header />
 	<br />
 	<Form /> -->
 </template>
 
 <style scoped>
-	.login-root {
-		background: oklch(96.9% 0.016 293.756);
-		min-height: 100vh; /* or 100% if html/body/#app are 100% */
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
+.login-root {
+  background: oklch(96.9% 0.016 293.756);
+  min-height: 100vh; /* or 100% if html/body/#app are 100% */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 </style>
